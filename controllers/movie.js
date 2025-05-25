@@ -22,7 +22,7 @@ exports.addMovie = async (req, res, next) => {
 
 exports.getMovies = async (req, res, next) => {
   try {
-    const allMovies = await Movie.find();
+    const allMovies = await Movie.find().populate('comments.userId', 'email');
     res.status(200).json({ movies: allMovies });  
   } catch (err) {
     next(err);
