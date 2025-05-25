@@ -85,6 +85,7 @@ exports.addComment = async (req, res, next) => {
   }
 };
 
+
 exports.getComments = async (req, res, next) => {
   try {
     const { movieId } = req.params;
