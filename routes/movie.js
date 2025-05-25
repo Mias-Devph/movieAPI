@@ -3,7 +3,7 @@ const router = express.Router();
 const movieController = require("../controllers/movie");
 const { verify, verifyAdmin } = require("../auth");
 
-router.post("/addMovie", verify, movieController.addMovie);
+router.post("/addMovie", verify, verifyAdmin, movieController.addMovie);
 router.get("/getMovies", verify, movieController.getMovies);
 router.get("/getMovie/:movieId", verify, movieController.getMovie);
 router.patch("/updateMovie/:movieId", verify, verifyAdmin, movieController.updateMovie);

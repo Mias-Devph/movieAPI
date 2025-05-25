@@ -14,7 +14,7 @@ exports.addMovie = async (req, res, next) => {
 
     const savedMovie = await movie.save();
 
-    res.status(201).json(savedMovie);  
+    res.status(201).json(savedMovie); 
   } catch (err) {
     next(err);
   }
@@ -89,7 +89,10 @@ exports.getComments = async (req, res, next) => {
   try {
     const { movieId } = req.params;
 
-    const movie = await Movie.findById(movieId).select("comments");
+    const movie = await Movie.findById(movieId)
+    .select("comments")
+    .populate("comments.userId", "email"); 
+
 
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
